@@ -4,34 +4,26 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "visitante")
-public class Visitante {
+public class Visitantes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_visitante")
-    private Long idVisitante;
+    private Long id_visitantes;
 
-    @Column(name = "nombre", length = 100)
     private String nombre;
-
-    @Column(name = "cedula", length = 100)
     private String cedula;
-
-    @Column(name = "telefono", length = 50)
     private String telefono;
-
-    @Column(name = "correo", length = 100)
     private String correo;
 
     @ManyToOne
-    @JoinColumn(name = "Id_Propietario", referencedColumnName = "Id_propietario")
+    @JoinColumn(name = "id_propietario")
     private Propietario propietario;
 
-    public Visitante() {
+    public Visitantes() {
     }
 
-    public Visitante(Long idVisitante, String nombre, String cedula, String telefono, String correo, Propietario propietario) {
-        this.idVisitante = idVisitante;
+    public Visitantes(Long id_visitantes, String nombre, String cedula, String telefono, String correo, Propietario propietario) {
+        this.id_visitantes = id_visitantes;
         this.nombre = nombre;
         this.cedula = cedula;
         this.telefono = telefono;
@@ -39,12 +31,12 @@ public class Visitante {
         this.propietario = propietario;
     }
 
-    public Long getIdVisitante() {
-        return idVisitante;
+    public Long getId_visitantes() {
+        return id_visitantes;
     }
 
-    public void setIdVisitante(Long idVisitante) {
-        this.idVisitante = idVisitante;
+    public void setId_visitantes(Long id_visitantes) {
+        this.id_visitantes = id_visitantes;
     }
 
     public String getNombre() {
@@ -85,17 +77,5 @@ public class Visitante {
 
     public void setPropietario(Propietario propietario) {
         this.propietario = propietario;
-    }
-
-    @Override
-    public String toString() {
-        return "Visitante{" +
-                "idVisitante=" + idVisitante +
-                ", nombre='" + nombre + '\'' +
-                ", cedula='" + cedula + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", correo='" + correo + '\'' +
-                ", propietario=" + propietario +
-                '}';
     }
 }

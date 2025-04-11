@@ -1,10 +1,8 @@
 package com.example.Cto_Residencial.Model;
 
-
 import jakarta.persistence.*;
-
-import java.time.LocalTime;
 import java.util.List;
+
 
 @Entity
 @Table(name = "propietario")
@@ -12,48 +10,38 @@ public class Propietario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_propietario")
-    private Long idPropietario;
+    private Long id_propietario;
 
-    @Column(name = "nombre", length = 100)
     private String nombre;
-
-    @Column(name = "cedula", length = 100)
     private String cedula;
-
-    @Column(name = "fecha_visita", length = 100)
-    private LocalTime fecha_visita;
-
-    @Column(name = "hora_entrada", length = 50)
-    private LocalTime hora_entrada;
+    private String fecha_visita;
+    private String hora_entrada;
 
     @OneToMany(mappedBy = "propietario")
-    private List<Visitante> visitantes;
+    private List<ReservaZona> reservaZonas;
 
     @OneToMany(mappedBy = "propietario")
-    private List<Reserva_Zona> reservasZonas;
-
-    @OneToMany(mappedBy = "propietario")
-    private List<Reserva_Parqueadero> reservasParqueaderos;
-
+    private List<ReservaParqueadero> reservaParqueaderos;
 
     public Propietario() {
     }
 
-    public Propietario(Long idPropietario, String nombre, String cedula, LocalTime fecha_visita, LocalTime hora_entrada) {
-        this.idPropietario = idPropietario;
+    public Propietario(Long id_propietario, String nombre, String cedula, String fecha_visita, String hora_entrada, List<ReservaZona> reservaZonas, List<ReservaParqueadero> reservaParqueaderos) {
+        this.id_propietario = id_propietario;
         this.nombre = nombre;
         this.cedula = cedula;
         this.fecha_visita = fecha_visita;
         this.hora_entrada = hora_entrada;
+        this.reservaZonas = reservaZonas;
+        this.reservaParqueaderos = reservaParqueaderos;
     }
 
-    public Long getIdPropietario() {
-        return idPropietario;
+    public Long getId_propietario() {
+        return id_propietario;
     }
 
-    public void setIdPropietario(Long idPropietario) {
-        this.idPropietario = idPropietario;
+    public void setId_propietario(Long id_propietario) {
+        this.id_propietario = id_propietario;
     }
 
     public String getNombre() {
@@ -72,57 +60,35 @@ public class Propietario {
         this.cedula = cedula;
     }
 
-    public LocalTime getFecha_visita() {
+    public String getFecha_visita() {
         return fecha_visita;
     }
 
-    public void setFecha_visita(LocalTime fecha_visita) {
+    public void setFecha_visita(String fecha_visita) {
         this.fecha_visita = fecha_visita;
     }
 
-    public LocalTime getHora_entrada() {
+    public String getHora_entrada() {
         return hora_entrada;
     }
 
-    public void setHora_entrada(LocalTime hora_entrada) {
+    public void setHora_entrada(String hora_entrada) {
         this.hora_entrada = hora_entrada;
     }
 
-    public List<Visitante> getVisitantes() {
-        return visitantes;
+    public List<ReservaZona> getReservaZonas() {
+        return reservaZonas;
     }
 
-    public void setVisitantes(List<Visitante> visitantes) {
-        this.visitantes = visitantes;
+    public void setReservaZonas(List<ReservaZona> reservaZonas) {
+        this.reservaZonas = reservaZonas;
     }
 
-    public List<Reserva_Zona> getReservasZonas() {
-        return reservasZonas;
+    public List<ReservaParqueadero> getReservaParqueaderos() {
+        return reservaParqueaderos;
     }
 
-    public void setReservasZonas(List<Reserva_Zona> reservasZonas) {
-        this.reservasZonas = reservasZonas;
-    }
-
-    public List<Reserva_Parqueadero> getReservasParqueaderos() {
-        return reservasParqueaderos;
-    }
-
-    public void setReservasParqueaderos(List<Reserva_Parqueadero> reservasParqueaderos) {
-        this.reservasParqueaderos = reservasParqueaderos;
-    }
-
-    @Override
-    public String toString() {
-        return "Propietario{" +
-                "idPropietario=" + idPropietario +
-                ", nombre='" + nombre + '\'' +
-                ", cedula='" + cedula + '\'' +
-                ", fecha_visita=" + fecha_visita +
-                ", hora_entrada=" + hora_entrada +
-                ", visitantes=" + visitantes +
-                ", reservasZonas=" + reservasZonas +
-                ", reservasParqueaderos=" + reservasParqueaderos +
-                '}';
+    public void setReservaParqueaderos(List<ReservaParqueadero> reservaParqueaderos) {
+        this.reservaParqueaderos = reservaParqueaderos;
     }
 }
